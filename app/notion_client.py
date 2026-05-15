@@ -194,6 +194,12 @@ class EvenzRepo:
             sessions=clean_notion_id(settings.dbs.sessions),
             event_log=clean_notion_id(settings.dbs.event_log),
         )
+        self._reset_runtime_caches()
+
+    def _reset_runtime_caches(self) -> None:
+        self._get_current_event_cached = lru_cache(maxsize=4)(self._get_current_event_uncached)
+        self._list_chapters_cached = lru_cache(maxsize=16)(self._list_chapters_uncached)
+        self._list_questions_cached = lru_cache(maxsize=32)(self._list_questions_uncached)
 
     def is_ready(self) -> bool:
         return bool(self.client)
@@ -285,18 +291,25 @@ class EvenzRepo:
     def create_page(self, db_id: str, properties: Dict[str, Any]) -> Dict[str, Any]:
         if not self.client:
             return {}
-        return _execute_with_retry(
+        page = _execute_with_retry(
             self.client.pages.create,
             parent={"database_id": db_id},
             properties=properties,
         )
+        self._reset_runtime_caches()
+        return page
 
     def update_page(self, page_id: str, properties: Dict[str, Any]) -> Dict[str, Any]:
         if not self.client:
             return {}
-        return _execute_with_retry(self.client.pages.update, page_id=page_id, properties=properties)
+        page = _execute_with_retry(self.client.pages.update, page_id=page_id, properties=properties)
+        self._reset_runtime_caches()
+        return page
 
     def get_current_event(self) -> Optional[Dict[str, Any]]:
+        return self._get_current_event_cached()
+
+    def _get_current_event_uncached(self) -> Optional[Dict[str, Any]]:
         pages = self.query(
             self.dbs.events,
             filter={"property": "slug", "rich_text": {"equals": self.settings.event_slug}},
@@ -312,6 +325,9 @@ class EvenzRepo:
         return self._normalize_event(active[0]) if active else None
 
     def list_chapters(self, event_id: str) -> List[Dict[str, Any]]:
+        return self._list_chapters_cached(event_id)
+
+    def _list_chapters_uncached(self, event_id: str) -> List[Dict[str, Any]]:
         pages = self.query(
             self.dbs.chapters,
             filter={
@@ -337,6 +353,15 @@ class EvenzRepo:
         self,
         event_id: str,
         *,
+        kind: str = "",
+        chapter_id: str = "",
+        active_only: bool = True,
+    ) -> List[Dict[str, Any]]:
+        return self._list_questions_cached(event_id, kind, chapter_id, active_only)
+
+    def _list_questions_uncached(
+        self,
+        event_id: str,
         kind: str = "",
         chapter_id: str = "",
         active_only: bool = True,

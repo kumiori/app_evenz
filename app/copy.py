@@ -8,7 +8,7 @@ WELCOME_BODY = (
     "pulls you."
 )
 
-IDENTITY_PROMPT = "How shall I recognize you?"
+IDENTITY_PROMPT = "How shall I recognise you?"
 CHAPTER_PROMPT = "Where would you like to help?"
 AVAILABILITY_PROMPT = "When could you pass by?"
 CAPACITY_PROMPT = "What kind of help feels good?"

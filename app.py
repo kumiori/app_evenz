@@ -32,6 +32,7 @@ def main() -> None:
     st.page_link("pages/02_host.py", label="Host console", icon="🧭")
     st.page_link("pages/03_projection.py", label="Projection view", icon="✨")
     st.page_link("pages/04_feedback.py", label="Feedback", icon="📝")
+    st.page_link("pages/98_test_i18n.py", label="Test i18n", icon="🌍")
     st.page_link("pages/99_test_db_connection.py", label="Test DB connection", icon="🧪")
 
     if not repo.is_ready():
