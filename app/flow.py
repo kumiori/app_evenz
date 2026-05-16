@@ -49,6 +49,11 @@ def reset_participant_state() -> None:
         "evenz_chapter_pills",
         "evenz_availability_pills",
         "evenz_capacity_pills",
+        "evenz_exact_slot_enabled",
+        "evenz_exact_start_date",
+        "evenz_exact_start_time",
+        "evenz_exact_end_date",
+        "evenz_exact_end_time",
     ]:
         if key in st.session_state:
             del st.session_state[key]

@@ -11,6 +11,25 @@ TEST_STRINGS = [
     "This app is designed to demonstrate i18n in Streamlit.",
     "Click here to proceed",
     "Hello, World!",
+    "Kitchen",
+    "Plants",
+    "Clothes",
+    "Books",
+    "Art / archives",
+    "This weekend",
+    "Weekday evening, dinner included",
+    "Next week",
+    "Flexible",
+    "I can carry",
+    "I can sort",
+    "I can assemble",
+    "I can bring tools",
+    "I can cook",
+    "I can be creative",
+    "I like to be given tasks",
+    "I prefer light tasks",
+    "I mostly come for presence and tea",
+    "Store your helper key",
 ]
 
 
@@ -28,7 +47,12 @@ def main() -> None:
     _ = setup_translation(selected_language)
 
     st.subheader("Catalog status")
-    st.write(translation_info(selected_language))
+    info = translation_info(selected_language)
+    st.write(info)
+    if not info["po_exists"]:
+        st.error("No messages.po file found for this locale.")
+    elif not info["mo_exists"]:
+        st.warning("messages.po exists, but messages.mo is missing. gettext will fall back until you compile the catalog.")
 
     st.subheader("Live rendering")
     st.title(_("Welcome to Our App"))

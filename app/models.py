@@ -2,32 +2,36 @@ from __future__ import annotations
 
 from typing import Any, Dict, List
 
+from app.i18n import N_
+
 
 AVAILABILITY_OPTIONS: List[Dict[str, str]] = [
-    {"value": "this_weekend", "label": "This weekend"},
-    {"value": "weekday_evening", "label": "Weekday evening"},
-    {"value": "next_week", "label": "Next week"},
-    {"value": "flexible", "label": "Flexible"},
+    {"value": "this_weekend", "label": N_("This weekend")},
+    {"value": "weekday_evening", "label": N_("Weekday evening, dinner included")},
+    {"value": "next_week", "label": N_("Next week")},
+    {"value": "flexible", "label": N_("Flexible")},
 ]
 
 
 CAPACITY_OPTIONS: List[Dict[str, str]] = [
-    {"value": "carry", "label": "I can carry"},
-    {"value": "sort", "label": "I can sort"},
-    {"value": "assemble", "label": "I can assemble"},
-    {"value": "tools", "label": "I can bring tools"},
-    {"value": "cook", "label": "I can cook"},
-    {"value": "light_tasks_only", "label": "I prefer light tasks"},
-    {"value": "presence_and_tea", "label": "I mostly come for presence and tea"},
+    {"value": "carry", "label": N_("I can carry")},
+    {"value": "sort", "label": N_("I can sort")},
+    {"value": "assemble", "label": N_("I can assemble")},
+    {"value": "tools", "label": N_("I can bring tools")},
+    {"value": "cook", "label": N_("I can cook")},
+    {"value": "creative", "label": N_("I can be creative")},
+    {"value": "task_directed", "label": N_("I like to be given tasks")},
+    {"value": "light_tasks_only", "label": N_("I prefer light tasks")},
+    {"value": "presence_and_tea", "label": N_("I mostly come for presence and tea")},
 ]
 
 
 CHAPTER_SEEDS: List[Dict[str, Any]] = [
     {
-        "name": "Kitchen",
+        "name": N_("Kitchen"),
         "emoji": "🍳",
         "slug": "kitchen",
-        "description": "Practical help to make the kitchen functional and joyful.",
+        "description": N_("Practical help to make the kitchen functional and joyful."),
         "sort_order": 1,
         "mood": "practical",
         "needs_followup": True,
@@ -35,10 +39,10 @@ CHAPTER_SEEDS: List[Dict[str, Any]] = [
         "target_people": 3,
     },
     {
-        "name": "Plants",
+        "name": N_("Plants"),
         "emoji": "🪴",
         "slug": "plants",
-        "description": "Repotting, cuttings, care, and plant redistribution.",
+        "description": N_("Repotting, cuttings, care, and plant redistribution."),
         "sort_order": 2,
         "mood": "light",
         "needs_followup": True,
@@ -46,10 +50,10 @@ CHAPTER_SEEDS: List[Dict[str, Any]] = [
         "target_people": 2,
     },
     {
-        "name": "Clothes",
-        "emoji": "👕",
+        "name": N_("Clothes"),
+        "emoji": "👘",
         "slug": "clothes",
-        "description": "Sorting, giving, folding, choosing what stays.",
+        "description": N_("Sorting, giving, folding, choosing what stays."),
         "sort_order": 3,
         "mood": "sorting",
         "needs_followup": False,
@@ -57,10 +61,10 @@ CHAPTER_SEEDS: List[Dict[str, Any]] = [
         "target_people": 2,
     },
     {
-        "name": "Books",
+        "name": N_("Books"),
         "emoji": "📚",
         "slug": "books",
-        "description": "Sorting, carrying, shelving, transmission, and gifts.",
+        "description": N_("Sorting, carrying, shelving, transmission, and gifts."),
         "sort_order": 4,
         "mood": "intimate",
         "needs_followup": True,
@@ -68,10 +72,10 @@ CHAPTER_SEEDS: List[Dict[str, Any]] = [
         "target_people": 3,
     },
     {
-        "name": "Art / archives",
+        "name": N_("Art / archives"),
         "emoji": "🎨",
         "slug": "art_archives",
-        "description": "Delicate objects, documents, images, memories, and placement.",
+        "description": N_("Delicate objects, documents, images, memories, and placement."),
         "sort_order": 5,
         "mood": "delicate",
         "needs_followup": True,
@@ -85,7 +89,7 @@ DEFAULT_QUESTIONS: List[Dict[str, Any]] = [
     {
         "title": "Q1 · Chapter interest",
         "kind": "chapter_interest",
-        "prompt": "Which chapters call you?",
+        "prompt": N_("Which chapters call you?"),
         "input_type": "multiselect",
         "choice_options_json": [
             {"slug": chapter["slug"], "label": f'{chapter["emoji"]} {chapter["name"]}'}
@@ -95,64 +99,64 @@ DEFAULT_QUESTIONS: List[Dict[str, Any]] = [
         "active": True,
         "step_order": 1,
         "visibility": "participant",
-        "help_text": "Choose one or more chapters. You can refine later.",
+        "help_text": N_("Choose one or more chapters. You can refine later."),
     },
     {
         "title": "Q2 · Availability",
         "kind": "availability",
-        "prompt": "When could you pass by?",
+        "prompt": N_("When could you pass by?"),
         "input_type": "multiselect",
         "choice_options_json": AVAILABILITY_OPTIONS,
         "required": True,
         "active": True,
         "step_order": 2,
         "visibility": "participant",
-        "help_text": "Precise slots stay optional.",
+        "help_text": N_("Precise slots stay optional."),
     },
     {
         "title": "Q3 · Capacity",
         "kind": "capacity_offer",
-        "prompt": "What kind of help feels good for you?",
+        "prompt": N_("What kind of help feels good for you?"),
         "input_type": "multiselect",
         "choice_options_json": CAPACITY_OPTIONS,
         "required": False,
         "active": True,
         "step_order": 3,
         "visibility": "participant",
-        "help_text": "A light signal is enough.",
+        "help_text": N_("A light signal is enough."),
     },
     {
         "title": "Q4 · Notes",
         "kind": "notes",
-        "prompt": "Anything I should know?",
+        "prompt": N_("Anything I should know?"),
         "input_type": "text",
         "choice_options_json": [],
         "required": False,
         "active": True,
         "step_order": 4,
         "visibility": "participant",
-        "help_text": "Constraints, curiosities, desired objects, timing notes.",
+        "help_text": N_("Constraints, curiosities, desired objects, timing notes."),
     },
     {
         "title": "Q5 · Feedback",
         "kind": "feedback",
-        "prompt": "What did this moment move, lighten, or reveal?",
+        "prompt": N_("What did this moment move, lighten, or reveal?"),
         "input_type": "text",
         "choice_options_json": [],
         "required": False,
         "active": True,
         "step_order": 5,
         "visibility": "participant",
-        "help_text": "For after the session.",
+        "help_text": N_("For after the session."),
     },
 ]
 
 
 FOLLOWUP_QUESTIONS: List[Dict[str, Any]] = [
     {
-        "title": "Kitchen follow-up",
+        "title": N_("Kitchen follow-up"),
         "chapter_slug": "kitchen",
-        "prompt": "Kitchen: what kind of help calls you?",
+        "prompt": N_("Kitchen: what kind of help calls you?"),
         "options": [
             "assemble",
             "clean",
@@ -161,9 +165,9 @@ FOLLOWUP_QUESTIONS: List[Dict[str, Any]] = [
         ],
     },
     {
-        "title": "Plants follow-up",
+        "title": N_("Plants follow-up"),
         "chapter_slug": "plants",
-        "prompt": "Plants: what kind of help calls you?",
+        "prompt": N_("Plants: what kind of help calls you?"),
         "options": [
             "repot",
             "cuttings",
@@ -172,9 +176,9 @@ FOLLOWUP_QUESTIONS: List[Dict[str, Any]] = [
         ],
     },
     {
-        "title": "Books follow-up",
+        "title": N_("Books follow-up"),
         "chapter_slug": "books",
-        "prompt": "Books: what kind of help calls you?",
+        "prompt": N_("Books: what kind of help calls you?"),
         "options": [
             "sort",
             "carry_boxes",
@@ -183,9 +187,9 @@ FOLLOWUP_QUESTIONS: List[Dict[str, Any]] = [
         ],
     },
     {
-        "title": "Art archives follow-up",
+        "title": N_("Art archives follow-up"),
         "chapter_slug": "art_archives",
-        "prompt": "Art / archives: what kind of help calls you?",
+        "prompt": N_("Art / archives: what kind of help calls you?"),
         "options": [
             "delicate_handling",
             "choose_keep_give",

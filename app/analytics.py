@@ -7,7 +7,7 @@ from typing import Any, Dict, Iterable, List, Tuple
 
 AVAILABILITY_LABELS = {
     "this_weekend": "this weekend",
-    "weekday_evening": "weekday evening",
+    "weekday_evening": "weekday evening, dinner included",
     "next_week": "next week",
     "flexible": "flexible",
 }
