@@ -82,6 +82,10 @@ def translation_info(language: str) -> Dict[str, str | bool]:
 
 def setup_translation(language: str) -> Callable[[str], str]:
     language = _normalise_language(language)
+    if language == "en":
+        # English is the source language in code. Loading an en catalog is
+        # unnecessary and can mask drift if that file contains stale translations.
+        return gettext.NullTranslations().gettext
     mo_file = locales_dir() / language / "LC_MESSAGES" / f"{DOMAIN}.mo"
     if mo_file.exists():
         with mo_file.open("rb") as handle:
