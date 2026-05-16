@@ -1,0 +1,429 @@
+# French translations for PROJECT.
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-05-16 15:39+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: fr\n"
+"Language-Team: fr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+msgid "chapter_hints"
+msgstr "🍳 cuisiner, imaginer, remettre en place · 🪴 soigner, rempoter, éclaircir · 👘 trier, plier, offrir · 📚 lire, libérer, transmettre · 🎨 exposer, transformer, archiver"
+
+msgid "How shall we communicate?"
+msgstr "Comment allons-nous communiquer ?"
+
+msgid "base_update_story"
+msgstr "Base a connu une grosse mise à jour : dedans, dehors, tuyaux et jus, peau et entrailles. La cuisine et la salle de bain ont changé, il n’y a plus de baignoire maintenant (qui en a encore une ?), et le chauffage, la plomberie, le sol et la ventilation ont été repris."
+
+#: app/models.py:9
+msgid "This weekend"
+msgstr "Ce week-end"
+
+#: app/models.py:10
+msgid "Weekday evening, dinner included"
+msgstr "En semaine le soir · dîner inclus"
+
+#: app/models.py:11
+msgid "Next week"
+msgstr "La semaine prochaine"
+
+#: app/models.py:12
+msgid "Flexible"
+msgstr "Flexible"
+
+#: app/models.py:17
+msgid "I can carry"
+msgstr "Je peux porter"
+
+#: app/models.py:18
+msgid "I can sort"
+msgstr "Je peux trier"
+
+#: app/models.py:19
+msgid "I can assemble"
+msgstr "Je peux bricoler"
+
+#: app/models.py:20
+msgid "I can bring tools"
+msgstr "Je peux apporter des outils"
+
+#: app/models.py:21
+msgid "I can cook"
+msgstr "Je peux cuisiner"
+
+#: app/models.py:22
+msgid "I can be creative"
+msgstr "Je peux aider à créer une bonne ambiance"
+
+#: app/models.py:23
+msgid "I like to be given tasks"
+msgstr "J’aime bien qu’on me donne des choses à faire"
+
+#: app/models.py:24
+msgid "I prefer light tasks"
+msgstr "Je préfère des tâches légères"
+
+#: app/models.py:25
+msgid "I mostly come for presence and tea"
+msgstr "Je viens surtout pour la présence et le thé"
+
+#: app/models.py:31
+msgid "Kitchen"
+msgstr "Cuisine"
+
+#: app/models.py:34
+msgid "Practical help to make the kitchen functional and joyful."
+msgstr "De quoi rendre la cuisine vivante, pratique et agréable."
+
+#: app/models.py:42
+msgid "Plants"
+msgstr "Plantes"
+
+#: app/models.py:45
+msgid "Repotting, cuttings, care, and plant redistribution."
+msgstr "Rempotage, boutures, soin, et circulation des plantes."
+
+#: app/models.py:53
+msgid "Clothes"
+msgstr "Vêtements"
+
+#: app/models.py:56
+msgid "Sorting, giving, folding, choosing what stays."
+msgstr "Trier, donner, plier, choisir ce qui reste."
+
+#: app/models.py:64
+msgid "Books"
+msgstr "Livres"
+
+#: app/models.py:67
+msgid "Sorting, carrying, shelving, transmission, and gifts."
+msgstr "Trier, porter, ranger, transmettre, offrir."
+
+#: app/models.py:75
+msgid "Art / archives"
+msgstr "Art / archives"
+
+#: app/models.py:78
+msgid "Delicate objects, documents, images, memories, and placement."
+msgstr "Objets délicats, documents, images, souvenirs, mise en place."
+
+#: app/models.py:92
+msgid "Which chapters call you?"
+msgstr "Vers quoi as-tu envie d’aller ?"
+
+#: app/models.py:102
+msgid "Choose one or more chapters. You can refine later."
+msgstr "Choisis un ou plusieurs espaces. Tu pourras affiner ensuite."
+
+#: app/models.py:107 pages/01_participant.py:459
+msgid "When could you pass by?"
+msgstr "Quand pourrais-tu passer ?"
+
+#: app/models.py:114
+msgid "Precise slots stay optional."
+msgstr "Les créneaux précis restent facultatifs."
+
+#: app/models.py:119
+msgid "What kind of help feels good for you?"
+msgstr "Quelle forme de contribution te va bien ?"
+
+#: app/models.py:126
+msgid "A light signal is enough."
+msgstr "Un petit signal suffit."
+
+#: app/models.py:131
+msgid "Anything I should know?"
+msgstr "Y a-t-il quelque chose que je devrais savoir ?"
+
+#: app/models.py:138
+msgid "Constraints, curiosities, desired objects, timing notes."
+msgstr "Contraintes, curiosités, objets recherchés, notes de timing."
+
+#: app/models.py:143
+msgid "What did this moment move, lighten, or reveal?"
+msgstr "Qu’est-ce que ce moment a déplacé, allégé, ou révélé ?"
+
+#: app/models.py:150
+msgid "For after the session."
+msgstr "Pour après le moment partagé."
+
+#: app/models.py:157
+msgid "Kitchen follow-up"
+msgstr "Suite cuisine"
+
+#: app/models.py:159
+msgid "Kitchen: what kind of help calls you?"
+msgstr "Cuisine : vers quel type de contribution tu te sens appelé·e ?"
+
+#: app/models.py:168
+msgid "Plants follow-up"
+msgstr "Suite plantes"
+
+#: app/models.py:170
+msgid "Plants: what kind of help calls you?"
+msgstr "Plantes : vers quel type de contribution tu te sens appelé·e ?"
+
+#: app/models.py:179
+msgid "Books follow-up"
+msgstr "Suite livres"
+
+#: app/models.py:181
+msgid "Books: what kind of help calls you?"
+msgstr "Livres : vers quel type de contribution tu te sens appelé·e ?"
+
+#: app/models.py:190
+msgid "Art archives follow-up"
+msgstr "Suite art / archives"
+
+#: app/models.py:192
+msgid "Art / archives: what kind of help calls you?"
+msgstr "Art / archives : vers quel type de contribution tu te sens appelé·e ?"
+
+#: pages/00_login.py:50
+msgid "Return with your four emojis."
+msgstr "Reviens avec tes quatre emojis."
+
+#: pages/00_login.py:65
+msgid "Evenz is not configured."
+msgstr "Evenz n’est pas configuré."
+
+#: pages/00_login.py:68
+msgid "Login"
+msgstr "Connexion"
+
+#: pages/00_login.py:68
+msgid "Paste the four-emoji helper key you stored earlier."
+msgstr "Colle la clé à quatre emojis que tu as gardée."
+
+#: pages/00_login.py:70
+msgid "Four-emoji key"
+msgstr "Clé à quatre emojis"
+
+#: pages/00_login.py:76
+msgid "Need"
+msgstr "À prévoir"
+
+#: pages/00_login.py:77
+msgid "Enter exactly the last four emoji symbols from your helper key screenshot."
+msgstr "Entre exactement les quatre derniers emojis de la capture de ta clé."
+
+#: pages/00_login.py:80
+msgid "Enter"
+msgstr "Entrer"
+
+#: pages/00_login.py:83
+msgid "Please enter exactly four emojis."
+msgstr "Merci d’entrer exactement quatre emojis."
+
+#: pages/00_login.py:87
+msgid "I could not find a helper with that short key."
+msgstr "Je n’ai pas retrouvé de participation avec cette clé courte."
+
+#: pages/01_participant.py:111 pages/01_participant.py:115
+#: pages/01_participant.py:531 pages/01_participant.py:532
+msgid "label"
+msgstr "étiquette"
+
+#: pages/01_participant.py:327
+msgid "Store your helper key"
+msgstr "Conserve cette clé"
+
+#: pages/01_participant.py:341
+msgid "Take a screenshot of this short key and store it safely."
+msgstr "Fais une capture d’écran pour la retrouver facilement."
+
+#: pages/01_participant.py:343
+msgid "I took a screenshot"
+msgstr "Capture faite"
+
+#: pages/01_participant.py:367
+msgid "Choose where you want to help."
+msgstr "Où as-tu envie de contribuer ?"
+
+#: pages/01_participant.py:377
+msgid "Selected language:"
+msgstr "Langue sélectionnée :"
+
+#: pages/01_participant.py:426
+msgid "Where would you like to help?"
+msgstr "Où as-tu envie de contribuer ?"
+
+#: pages/01_participant.py:433 pages/01_participant.py:450
+#: pages/01_participant.py:496 pages/01_participant.py:512
+msgid "Continue"
+msgstr "Continuer"
+
+#: pages/01_participant.py:435
+msgid "Choose at least one chapter."
+msgstr "Choisis au moins un chapitre."
+
+#: pages/01_participant.py:442
+msgid "How shall I recognise you?"
+msgstr "Comment veux-tu qu’on t’appelle ?"
+
+#: pages/01_participant.py:442
+msgid "It would be lovely to know what to call each other."
+msgstr "Prénom, surnom, pseudonyme… comme tu préfères."
+
+#: pages/01_participant.py:444
+msgid "Name or nickname"
+msgstr "Nom ou surnom"
+
+#: pages/01_participant.py:452
+msgid "It would be lovely to know what to call you."
+msgstr "Ce serait agréable de savoir comment t’appeler."
+
+#: pages/01_participant.py:459
+msgid "Choose one or more moments."
+msgstr "Choisis un ou plusieurs moments."
+
+#: pages/01_participant.py:466
+msgid "Add a precise date / time"
+msgstr "Ajouter une date / heure précise"
+
+#: pages/01_participant.py:468
+msgid "Start date"
+msgstr "Date de début"
+
+#: pages/01_participant.py:473
+msgid "Start time"
+msgstr "Heure de début"
+
+#: pages/01_participant.py:478
+msgid "End date"
+msgstr "Date de fin"
+
+#: pages/01_participant.py:483
+msgid "End time"
+msgstr "Heure de fin"
+
+#: pages/01_participant.py:498
+msgid "Choose at least one availability option."
+msgstr "Choisis au moins une disponibilité."
+
+#: pages/01_participant.py:505
+msgid "What kind of help feels good?"
+msgstr "Quelle forme de contribution te va bien ?"
+
+#: pages/01_participant.py:505
+msgid "Choose what you can offer."
+msgstr "Choisis ce que tu as envie d’apporter."
+
+#: pages/01_participant.py:534
+msgid "Review"
+msgstr "Un dernier regard"
+
+#: pages/01_participant.py:534
+msgid "Check your draft before syncing anything."
+msgstr "Regarde une dernière fois avant l’envoi."
+
+#: pages/01_participant.py:535
+msgid "Name"
+msgstr "Nom"
+
+#: pages/01_participant.py:536
+msgid "Chapters"
+msgstr "Chapitres"
+
+#: pages/01_participant.py:537
+msgid "Availability"
+msgstr "Disponibilités"
+
+#: pages/01_participant.py:538
+msgid "Capacities"
+msgstr "Capacités"
+
+#: pages/01_participant.py:538
+msgid "Presence only"
+msgstr "Présence uniquement"
+
+#: pages/01_participant.py:539
+msgid "Key ending"
+msgstr "Fin de la clé"
+
+#: pages/01_participant.py:542
+msgid "Your helper key"
+msgstr "Ta clé de participation"
+
+#: pages/01_participant.py:543
+msgid ""
+"Only the short ending is shown here. You will see the screenshot card "
+"before sending."
+msgstr ""
+"Seule la fin courte est affichée ici. Tu verras la carte de capture "
+"d’écran avant l’envoi."
+
+#: pages/01_participant.py:549
+msgid "Edit"
+msgstr "Modifier"
+
+#: pages/01_participant.py:553
+msgid "Send"
+msgstr "Envoyer"
+
+#: pages/01_participant.py:558
+msgid "You’re in."
+msgstr "C’est bon."
+
+#: pages/01_participant.py:558
+msgid "I’ll gather the signals and suggest a moment."
+msgstr "Je vais rassembler les signaux et proposer un moment."
+
+#: pages/01_participant.py:560
+msgid "Saved"
+msgstr "Enregistré"
+
+#: pages/01_participant.py:561
+msgid "Your preferences are integrating with the others'. Thank you for sharing them."
+msgstr "Tes préférences s’intègrent avec celles des autres. Merci de les partager."
+
+#: pages/01_participant.py:563
+msgid "Wait for a signal through WhatsApp."
+msgstr "Attends un signal sur WhatsApp."
+
+#: pages/01_participant.py:564
+msgid "In the meantime, would you like to check my library? Happy to know if there’s something you want to dig."
+msgstr "En attendant, tu veux peut-être jeter un œil à ma bibliothèque ? Heureux de savoir s’il y a quelque chose que tu aimerais creuser."
+
+#: pages/01_participant.py:568
+msgid "Browse the library"
+msgstr "Parcourir la bibliothèque"
+
+#: pages/01_participant.py:571
+msgid "Go to login"
+msgstr "Aller à la connexion"
+
+#: pages/01_participant.py:561
+msgid "Your draft has been synced. Thank you for helping The Base move forward."
+msgstr "Ton brouillon a été synchronisé. Merci d’aider The Base à avancer."
+
+#: pages/01_participant.py:563
+msgid "Start again"
+msgstr "Recommencer"
+
+#: pages/98_test_i18n.py:58
+msgid "Welcome to Our App"
+msgstr "Bienvenue dans notre application"
+
+#: pages/98_test_i18n.py:59
+msgid "This app is designed to demonstrate i18n in Streamlit."
+msgstr "Cette application est conçue pour démontrer l’i18n dans Streamlit."
+
+#: pages/98_test_i18n.py:60
+msgid "Click here to proceed"
+msgstr "Clique ici pour continuer"
+
+#: pages/98_test_i18n.py:61
+msgid "Hello, World!"
+msgstr "Bonjour le monde !"
+
+#~ msgid "Back"
+#~ msgstr "Retour"

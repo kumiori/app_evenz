@@ -771,9 +771,17 @@ def main() -> None:
             _("Saved"),
             _("Your preferences are integrating with the others'. Thank you for sharing them."),
         )
-        if st.button(_("Start again"), use_container_width=True):
-            reset_participant_state()
-            st.rerun()
+        editorial_paragraph(_("Wait for a signal through WhatsApp."))
+        editorial_paragraph(
+            _("In the meantime, would you like to check my library? Happy to know if there’s something you want to dig.")
+        )
+        left, right = st.columns(2)
+        with left:
+            if st.button(_("Browse the library"), use_container_width=True):
+                st.switch_page("pages/05_library.py")
+        with right:
+            if st.button(_("Go to login"), use_container_width=True):
+                st.switch_page("pages/00_login.py")
 
 
 if __name__ == "__main__":

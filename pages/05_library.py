@@ -6,10 +6,18 @@ from typing import Dict, List
 import pandas as pd
 import streamlit as st
 
-from app.components import editorial_paragraph, inject_evenz_styles, rhythm_gap, soft_header, summary_block
+from app.components import (
+    editorial_paragraph,
+    inject_evenz_styles,
+    rhythm_gap,
+    soft_header,
+    summary_block,
+)
 
 
-ASSET_PATH = Path(__file__).resolve().parents[1] / "assets" / "base-Bookshelf-2026-05-16.csv"
+ASSET_PATH = (
+    Path(__file__).resolve().parents[1] / "assets" / "base-Bookshelf-2026-05-16.csv"
+)
 
 
 def _library_styles() -> None:
@@ -57,6 +65,12 @@ def _library_styles() -> None:
             border-radius: 24px;
             padding: 1.2rem 1.2rem 1.05rem;
             min-height: 13rem;
+        }
+        .library-card.resonating {
+            border-color: rgba(255,86,92,.46);
+            background:
+                radial-gradient(circle at top right, rgba(255,86,92,.08), transparent 28%),
+                rgba(132,38,44,.14);
         }
         .library-card h3 {
             margin: 0 0 .55rem 0;
@@ -135,12 +149,16 @@ def _format_book_count(value: int) -> str:
     return f"{value} book" if value == 1 else f"{value} books"
 
 
-def _filter_pills(label: str, options: List[str], key: str, default: str = "All") -> str:
+def _filter_pills(
+    label: str, options: List[str], key: str, default: str = "All"
+) -> str:
     selected = st.pills(
         label,
         options,
         selection_mode="single",
-        default=st.session_state.get(key, default if default in options else options[0]),
+        default=st.session_state.get(
+            key, default if default in options else options[0]
+        ),
         key=key,
         label_visibility="collapsed",
     )
@@ -158,7 +176,9 @@ def _sort_segmented(options: List[str], key: str, default: str) -> str:
     return str(selected or default)
 
 
-def _apply_filters(frame: pd.DataFrame, shelf: str, language: str, status: str) -> pd.DataFrame:
+def _apply_filters(
+    frame: pd.DataFrame, shelf: str, language: str, status: str
+) -> pd.DataFrame:
     filtered = frame.copy()
     if shelf != "All shelves":
         filtered = filtered[filtered["display_shelf"] == shelf]
@@ -177,24 +197,45 @@ def _apply_filters(frame: pd.DataFrame, shelf: str, language: str, status: str) 
 
 def _apply_sort(frame: pd.DataFrame, sort_mode: str) -> pd.DataFrame:
     if sort_mode == "Recently added":
-        return frame.sort_values(["Date added", "Title"], ascending=[False, True], na_position="last")
+        return frame.sort_values(
+            ["Date added", "Title"], ascending=[False, True], na_position="last"
+        )
     if sort_mode == "Title":
-        return frame.sort_values(["Title", "display_author"], ascending=[True, True], na_position="last")
+        return frame.sort_values(
+            ["Title", "display_author"], ascending=[True, True], na_position="last"
+        )
     if sort_mode == "Author":
-        return frame.sort_values(["display_author", "Title"], ascending=[True, True], na_position="last")
+        return frame.sort_values(
+            ["display_author", "Title"], ascending=[True, True], na_position="last"
+        )
     if sort_mode == "Published":
-        return frame.sort_values(["Published At", "Title"], ascending=[False, True], na_position="last")
+        return frame.sort_values(
+            ["Published At", "Title"], ascending=[False, True], na_position="last"
+        )
     if sort_mode == "Length":
-        return frame.sort_values(["Page Count", "Title"], ascending=[False, True], na_position="last")
+        return frame.sort_values(
+            ["Page Count", "Title"], ascending=[False, True], na_position="last"
+        )
     return frame
 
 
-def _render_book_card(book: Dict[str, object]) -> None:
+def _toggle_signal(book_id: str) -> None:
+    current = list(st.session_state.get("library_signals", []))
+    if book_id in current:
+        current = [item for item in current if item != book_id]
+    else:
+        current.append(book_id)
+    st.session_state["library_signals"] = current
+
+
+def _render_book_card(book: Dict[str, object], signaled: bool = False) -> None:
     chips: List[str] = []
     if book.get("display_shelf"):
         chips.append(f'<span class="library-chip">{book["display_shelf"]}</span>')
     if book.get("display_language"):
-        chips.append(f'<span class="library-chip">{str(book["display_language"]).upper()}</span>')
+        chips.append(
+            f'<span class="library-chip">{str(book["display_language"]).upper()}</span>'
+        )
     if book.get("display_format"):
         chips.append(f'<span class="library-chip">{book["display_format"]}</span>')
     if bool(book.get("Read")):
@@ -203,6 +244,8 @@ def _render_book_card(book: Dict[str, object]) -> None:
         chips.append('<span class="library-chip accent">wishlist</span>')
     if bool(book.get("Signed")):
         chips.append('<span class="library-chip accent">signed</span>')
+    if signaled:
+        chips.append('<span class="library-chip accent">resonating</span>')
 
     year = int(book.get("published_year") or 0)
     year_text = str(year) if year > 0 else "undated"
@@ -213,15 +256,21 @@ def _render_book_card(book: Dict[str, object]) -> None:
     meta_text = " · ".join(meta_parts)
     subtitle = str(book.get("Subtitle") or "").strip()
     description = str(book.get("display_description") or "").strip()
-    excerpt = description or subtitle or str(book.get("display_categories") or "").strip()
-    excerpt = excerpt if excerpt else "A quiet object on the shelf, waiting for its next reader."
+    excerpt = (
+        description or subtitle or str(book.get("display_categories") or "").strip()
+    )
+    excerpt = (
+        excerpt
+        if excerpt
+        else "A quiet object on the shelf, waiting for its next reader."
+    )
 
     st.markdown(
         f"""
-        <div class="library-card">
+        <div class="library-card {"resonating" if signaled else ""}">
             <h3>{book["Title"]}</h3>
             <div class="author">{book["display_author"]}</div>
-            <div class="library-chip-row">{''.join(chips)}</div>
+            <div class="library-chip-row">{"".join(chips)}</div>
             <div class="meta">{meta_text}</div>
             <div class="desc">{excerpt}</div>
         </div>
@@ -236,20 +285,28 @@ def main() -> None:
     _library_styles()
 
     books = load_library()
+    st.session_state.setdefault("library_signals", [])
 
     soft_header(
         "Base Library",
-        "A living shelf: philosophy, theatre, religion, fiction, social thought, manuals, and strange companions.",
+        "Many shelves: philosophy, poetry, non-fiction, fiction, social thought, manuals, and food trips.",
         step="library",
     )
     editorial_paragraph(
         "Use the pills to slice the shelf quickly, then wander through the cards. This is not a database view, it is a browsing surface."
     )
+    editorial_paragraph(
+        "Tap Signal on anything that may resonate. It is a light way of marking what you may want to dig later."
+    )
 
     total_books = len(books)
     read_books = int(books["Read"].sum())
-    languages = sorted([value for value in books["display_language"].unique().tolist() if value])
-    shelves = sorted([value for value in books["display_shelf"].unique().tolist() if value])
+    languages = sorted(
+        [value for value in books["display_language"].unique().tolist() if value]
+    )
+    shelves = sorted(
+        [value for value in books["display_shelf"].unique().tolist() if value]
+    )
 
     summary_block(
         "Shelf pulse",
@@ -258,7 +315,9 @@ def main() -> None:
 
     st.markdown('<div class="library-toolbar">', unsafe_allow_html=True)
     shelf = _filter_pills("Shelf", ["All shelves"] + shelves, "library_shelf_filter")
-    language = _filter_pills("Language", ["All languages"] + languages, "library_language_filter")
+    language = _filter_pills(
+        "Language", ["All languages"] + languages, "library_language_filter"
+    )
     status = _filter_pills(
         "Status",
         ["All", "Unread", "Read", "Wishlist", "Signed"],
@@ -274,6 +333,16 @@ def main() -> None:
 
     filtered = _apply_filters(books, shelf, language, status)
     filtered = _apply_sort(filtered, sort_mode)
+    signaled_ids = set(st.session_state.get("library_signals", []))
+
+    if signaled_ids:
+        signaled_titles = books[books["Book Id"].astype(str).isin(signaled_ids)][
+            "Title"
+        ].tolist()
+        preview = " · ".join(signaled_titles[:4])
+        if len(signaled_titles) > 4:
+            preview += " · …"
+        summary_block("Resonance", preview)
 
     rhythm_gap(0.5)
     st.markdown(
@@ -284,9 +353,19 @@ def main() -> None:
     rows = filtered.to_dict("records")
     for index in range(0, len(rows), 2):
         cols = st.columns(2, gap="medium")
-        for column, book in zip(cols, rows[index:index + 2]):
+        for column, book in zip(cols, rows[index : index + 2]):
             with column:
-                _render_book_card(book)
+                book_id = str(book.get("Book Id") or "")
+                is_signaled = book_id in signaled_ids
+                _render_book_card(book, signaled=is_signaled)
+                if st.button(
+                    "Signaled" if is_signaled else "Signal",
+                    key=f"library_signal_{book_id}",
+                    type="primary" if is_signaled else "secondary",
+                    use_container_width=True,
+                ):
+                    _toggle_signal(book_id)
+                    st.rerun()
         rhythm_gap(0.5)
 
 

@@ -27,6 +27,9 @@ def main() -> None:
         "evenz",
         "A warm coordination ritual for reopening, shared help, and chapter-based sessions.",
     )
+    st.caption(
+        "Parts of these texts have been AI-assisted. Reach out to improve the wording."
+    )
 
     st.page_link("pages/01_participant.py", label="Participant flow", icon="🌿")
     st.page_link("pages/02_host.py", label="Host console", icon="🧭")
