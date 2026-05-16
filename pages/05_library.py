@@ -13,6 +13,7 @@ from app.components import (
     soft_header,
     summary_block,
 )
+from app.flow import get_draft
 
 
 ASSET_PATH = (
@@ -286,6 +287,12 @@ def main() -> None:
 
     books = load_library()
     st.session_state.setdefault("library_signals", [])
+    draft = get_draft()
+    is_logged_in = bool(
+        st.session_state.get("evenz_authenticated_access_key")
+        or draft.get("access_key")
+        or draft.get("existing_player_id")
+    )
 
     soft_header(
         "Base Library",
@@ -295,9 +302,17 @@ def main() -> None:
     editorial_paragraph(
         "Use the pills to slice the shelf quickly, then wander through the cards. This is not a database view, it is a browsing surface."
     )
-    editorial_paragraph(
-        "Tap Signal on anything that may resonate. It is a light way of marking what you may want to dig later."
-    )
+    if is_logged_in:
+        editorial_paragraph(
+            "Tap Signal on anything that may resonate. It is a light way of marking what you may want to dig later."
+        )
+    else:
+        editorial_paragraph(
+            "Have a look around. To signal a book, log in with your emoji key first."
+        )
+        if st.button("Log in to signal", use_container_width=True):
+            st.session_state["evenz_post_login_target"] = "pages/05_library.py"
+            st.switch_page("pages/00_login.py")
 
     total_books = len(books)
     read_books = int(books["Read"].sum())
@@ -363,6 +378,7 @@ def main() -> None:
                     key=f"library_signal_{book_id}",
                     type="primary" if is_signaled else "secondary",
                     use_container_width=True,
+                    disabled=not is_logged_in,
                 ):
                     _toggle_signal(book_id)
                     st.rerun()

@@ -31,7 +31,7 @@ def main() -> None:
         "Parts of these texts have been AI-assisted. Reach out to improve the wording."
     )
 
-    st.page_link("pages/01_participant.py", label="Participant flow", icon="🌿")
+    st.page_link("pages/01_base.py", label="Base", icon="🌿")
     st.page_link("pages/02_host.py", label="Host console", icon="🧭")
     st.page_link("pages/03_projection.py", label="Projection view", icon="✨")
     st.page_link("pages/04_feedback.py", label="Feedback", icon="📝")

@@ -494,7 +494,7 @@ def _open_confirm_send_dialog(repo, event, draft, chapters, question_by_kind, _)
 
 def main() -> None:
     st.set_page_config(
-        page_title="Participant",
+        page_title="Base",
         page_icon="🌿",
         layout="centered",
         initial_sidebar_state="collapsed",
@@ -773,12 +773,13 @@ def main() -> None:
         )
         editorial_paragraph(_("Wait for a signal through WhatsApp."))
         editorial_paragraph(
-            _("In the meantime, would you like to check my library? Happy to know if there’s something you want to dig.")
+            _("Have a look at the library. Log in with your emoji key, then see what may resonate.")
         )
         left, right = st.columns(2)
         with left:
             if st.button(_("Browse the library"), use_container_width=True):
-                st.switch_page("pages/05_library.py")
+                st.session_state["evenz_post_login_target"] = "pages/05_library.py"
+                st.switch_page("pages/00_login.py")
         with right:
             if st.button(_("Go to login"), use_container_width=True):
                 st.switch_page("pages/00_login.py")

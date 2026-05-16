@@ -390,8 +390,8 @@ msgid "Wait for a signal through WhatsApp."
 msgstr "Attends un signal sur WhatsApp."
 
 #: pages/01_participant.py:564
-msgid "In the meantime, would you like to check my library? Happy to know if there’s something you want to dig."
-msgstr "En attendant, tu veux peut-être jeter un œil à ma bibliothèque ? Heureux de savoir s’il y a quelque chose que tu aimerais creuser."
+msgid "Have a look at the library. Log in with your emoji key, then see what may resonate."
+msgstr "Va jeter un œil à la bibliothèque. Connecte-toi avec ta clé emoji, puis vois ce qui peut résonner."
 
 #: pages/01_participant.py:568
 msgid "Browse the library"

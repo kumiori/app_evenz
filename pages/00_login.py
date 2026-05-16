@@ -88,6 +88,7 @@ def main() -> None:
             return
         access_key = str(player.get("access_key") or "")
         st.session_state["evenz_login_access_key"] = access_key
+        st.session_state["evenz_authenticated_access_key"] = access_key
         update_draft(
             locale=selected_locale,
             access_key=access_key,
@@ -95,7 +96,8 @@ def main() -> None:
             existing_player_id=str(player.get("id") or ""),
             hydrated_from_query=False,
         )
-        st.switch_page("pages/01_participant.py")
+        target = str(st.session_state.pop("evenz_post_login_target", "pages/01_base.py"))
+        st.switch_page(target)
 
 
 if __name__ == "__main__":
