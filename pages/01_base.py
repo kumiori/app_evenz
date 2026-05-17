@@ -31,9 +31,12 @@ from app.flow import (
     update_draft,
 )
 from app.i18n import PARTICIPANT_LANGUAGES, get_translator, set_locale
+import streamlit.components.v1 as components
+
 from app.key_codec import (
     generate_hex_key,
     hex_to_emoji,
+    key_to_emoji_suffix,
     normalize_access_key,
     split_emoji_symbols,
 )
@@ -466,6 +469,46 @@ def _submit(
     return timings
 
 
+def _existing_short_emoji_suffixes(repo) -> set[str]:
+    suffixes: set[str] = set()
+    for player in repo.list_players(limit=500):
+        access_key = str(player.get("access_key") or "")
+        if not access_key:
+            continue
+        try:
+            suffix = key_to_emoji_suffix(access_key, 4)
+        except ValueError:
+            continue
+        if suffix:
+            suffixes.add(suffix)
+    return suffixes
+
+
+def _mint_unique_access_key(repo, suffix_length: int = 4, attempts: int = 256) -> str:
+    existing_suffixes = _existing_short_emoji_suffixes(repo)
+    for _ in range(attempts):
+        candidate = generate_hex_key()
+        try:
+            suffix = key_to_emoji_suffix(candidate, suffix_length)
+        except ValueError:
+            continue
+        if suffix not in existing_suffixes and not repo.get_player_by_access_key(candidate):
+            return candidate
+    raise RuntimeError("Could not mint a unique emoji access key.")
+
+
+def _prefill_login_with_current_key() -> None:
+    access_key = str(get_draft().get("access_key") or "")
+    if not access_key:
+        return
+    try:
+        st.session_state["evenz_login_short_emoji_prefill"] = key_to_emoji_suffix(
+            access_key, 4
+        )
+    except ValueError:
+        st.session_state.pop("evenz_login_short_emoji_prefill", None)
+
+
 def _open_confirm_send_dialog(repo, event, draft, chapters, question_by_kind, _):
     @st.dialog(_("Store your helper key"))
     def _confirm_send_dialog() -> None:
@@ -477,14 +520,36 @@ def _open_confirm_send_dialog(repo, event, draft, chapters, question_by_kind, _)
         )
         st.markdown(
             f"""
-            <div style="text-align:center; font-size:2.2rem; line-height:1.4; margin: 1rem 0 1.5rem 0;">
+            <div style="text-align:center; font-size:4rem; line-height:1.2; letter-spacing:.14em; margin: 1.1rem 0 1.2rem 0;">
                 {short_emoji}
             </div>
             """,
             unsafe_allow_html=True,
         )
+        components.html(
+            f"""
+            <div style="display:flex; justify-content:center; margin: .6rem 0 1rem 0;">
+              <button
+                onclick="navigator.clipboard.writeText({short_emoji!r})"
+                style="
+                  border: 1px solid rgba(255,255,255,.18);
+                  border-radius: 999px;
+                  background: rgba(255,255,255,.04);
+                  color: rgba(244,241,232,.92);
+                  padding: .6rem 1rem;
+                  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                  font-size: 1rem;
+                  line-height: 1.2;
+                  cursor: pointer;
+                "
+              >
+                ⧉ {_("Copy the emoji key")}
+              </button>
+            </div>
+            """,
+            height=62,
+        )
         st.caption(_("Take a screenshot of this short key and store it safely."))
-        st.code(str(access_key)[-4:], language="text")
         if st.button(_("I took a screenshot"), use_container_width=True):
             _submit(repo, event, draft, chapters, question_by_kind)
             st.rerun()
@@ -718,7 +783,7 @@ def main() -> None:
     if step == "review":
         access_key = str(draft_value("access_key", "") or "")
         if not access_key:
-            access_key = generate_hex_key()
+            access_key = _mint_unique_access_key(repo)
             update_draft(access_key=access_key)
             draft = get_draft()
 
@@ -762,6 +827,8 @@ def main() -> None:
         return
 
     if step == "done":
+        is_authenticated = bool(st.session_state.get("evenz_authenticated_access_key"))
+        display_name = str(draft.get("name") or "").strip()
         soft_header(
             _("You’re in."),
             _("I’ll gather the signals and suggest a moment."),
@@ -779,10 +846,18 @@ def main() -> None:
         with left:
             if st.button(_("Browse the library"), use_container_width=True):
                 st.session_state["evenz_post_login_target"] = "pages/05_library.py"
+                _prefill_login_with_current_key()
                 st.switch_page("pages/00_login.py")
         with right:
-            if st.button(_("Go to login"), use_container_width=True):
-                st.switch_page("pages/00_login.py")
+            if is_authenticated:
+                summary_block(
+                    _("Welcome"),
+                    _("Welcome, {name}.").format(name=display_name or _("friend")),
+                )
+            else:
+                if st.button(_("Go to login"), use_container_width=True):
+                    _prefill_login_with_current_key()
+                    st.switch_page("pages/00_login.py")
 
 
 if __name__ == "__main__":

@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-05-16 15:39+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2026-05-17 10:35+0200\n"
+"Last-Translator: Andrés A León Baldelli <a.leon.baldelli@gmail.com>\n"
 "Language: it\n"
 "Language-Team: it <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -22,6 +22,36 @@ msgstr "Come comunicheremo?"
 
 msgid "base_update_story"
 msgstr "Base ha attraversato un aggiornamento importante: dentro e fuori, tubi e flusso, pelle e viscere. La cucina e il bagno sono cambiati, la vasca non c’è più ormai (chi ce l’ha ancora?), e riscaldamento, impianti, pavimento e ventilazione sono stati rifatti."
+
+msgid "Copy the emoji key"
+msgstr "Copia la chiave emoji"
+
+msgid "Please enter an access key."
+msgstr "Inserisci una chiave di accesso."
+
+msgid "I could not find a helper with that key."
+msgstr "Non ho trovato una partecipazione con questa chiave."
+
+msgid "Access key format not recognised."
+msgstr "Il formato della chiave non è riconosciuto."
+
+msgid "Add at least four emoji symbols to continue."
+msgstr "Aggiungi almeno quattro emoji per continuare."
+
+msgid "Multiple matches. Add two more emojis."
+msgstr "Ci sono più corrispondenze. Aggiungi altri due emoji."
+
+msgid "Key invalid or ambiguous. Try the full emoji key or the ASCII access key."
+msgstr "Chiave non valida o ambigua. Prova la chiave emoji completa o la chiave ASCII."
+
+msgid "Paste your emoji key or full access key."
+msgstr "Incolla la tua chiave emoji o la chiave di accesso completa."
+
+msgid "Emoji or access key"
+msgstr "Chiave emoji o chiave di accesso"
+
+msgid "You can enter four emojis, six emojis, the full emoji string, or the full ASCII access key."
+msgstr "Puoi inserire quattro emoji, sei emoji, l’intera stringa emoji, oppure la chiave di accesso ASCII completa."
 
 #: app/models.py:9
 msgid "This weekend"
@@ -400,6 +430,21 @@ msgstr "Esplora la biblioteca"
 #: pages/01_participant.py:571
 msgid "Go to login"
 msgstr "Vai al login"
+
+msgid "Welcome"
+msgstr "Benvenutə"
+
+msgid "Welcome, {name}."
+msgstr "Benvenutə, {name}."
+
+msgid "friend"
+msgstr "amicə"
+
+msgid "You are already connected."
+msgstr "Sei già connessə."
+
+msgid "Disconnect"
+msgstr "Disconnettiti"
 
 #: pages/01_participant.py:561
 msgid "Your draft has been synced. Thank you for helping The Base move forward."

@@ -14,6 +14,7 @@ from app.components import (
     summary_block,
 )
 from app.flow import get_draft
+from app.key_codec import key_to_emoji_suffix
 
 
 ASSET_PATH = (
@@ -124,6 +125,13 @@ def _library_styles() -> None:
         """,
         unsafe_allow_html=True,
     )
+
+
+def _short_emoji_from_access_key(raw_key: str) -> str:
+    try:
+        return key_to_emoji_suffix(raw_key, 4)
+    except ValueError:
+        return ""
 
 
 @st.cache_data(show_spinner=False)
@@ -312,6 +320,9 @@ def main() -> None:
         )
         if st.button("Log in to signal", use_container_width=True):
             st.session_state["evenz_post_login_target"] = "pages/05_library.py"
+            short_emoji = _short_emoji_from_access_key(str(draft.get("access_key") or ""))
+            if short_emoji:
+                st.session_state["evenz_login_short_emoji_prefill"] = short_emoji
             st.switch_page("pages/00_login.py")
 
     total_books = len(books)

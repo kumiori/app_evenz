@@ -216,3 +216,14 @@ def normalize_access_key(raw: str) -> str:
         return phrase_to_hex(candidate)
 
     raise ValueError("Access key format not recognized.")
+
+
+def key_to_emoji_suffix(raw_key: str, length: int = 4) -> str:
+    if length <= 0:
+        return ""
+    canonical = normalize_access_key(raw_key)
+    emoji_key = hex_to_emoji(canonical)
+    symbols = split_emoji_symbols(emoji_key)
+    if not symbols:
+        return ""
+    return "".join(symbols[-length:])

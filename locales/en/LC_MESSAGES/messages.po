@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-05-16 15:39+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2026-05-17 10:35+0200\n"
+"Last-Translator: Andrés A León Baldelli <a.leon.baldelli@gmail.com>\n"
 "Language: en\n"
 "Language-Team: en <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -22,6 +22,36 @@ msgstr "How shall we communicate?"
 
 msgid "base_update_story"
 msgstr "Base has gone through a major update: inside and outside, piping and juice, skin and guts. The kitchen and bathroom have changed, the bathtub is gone now (who still has one?), and the heating, piping, floor, and ventilation have all been reworked."
+
+msgid "Copy the emoji key"
+msgstr "Copy the emoji key"
+
+msgid "Please enter an access key."
+msgstr "Please enter an access key."
+
+msgid "I could not find a helper with that key."
+msgstr "I could not find a helper with that key."
+
+msgid "Access key format not recognised."
+msgstr "Access key format not recognised."
+
+msgid "Add at least four emoji symbols to continue."
+msgstr "Add at least four emoji symbols to continue."
+
+msgid "Multiple matches. Add two more emojis."
+msgstr "Multiple matches. Add two more emojis."
+
+msgid "Key invalid or ambiguous. Try the full emoji key or the ASCII access key."
+msgstr "Key invalid or ambiguous. Try the full emoji key or the ASCII access key."
+
+msgid "Paste your emoji key or full access key."
+msgstr "Paste your emoji key or full access key."
+
+msgid "Emoji or access key"
+msgstr "Emoji or access key"
+
+msgid "You can enter four emojis, six emojis, the full emoji string, or the full ASCII access key."
+msgstr "You can enter four emojis, six emojis, the full emoji string, or the full ASCII access key."
 
 #: app/models.py:9
 msgid "This weekend"
@@ -400,6 +430,21 @@ msgstr "Browse the library"
 #: pages/01_participant.py:571
 msgid "Go to login"
 msgstr "Go to login"
+
+msgid "Welcome"
+msgstr "Welcome"
+
+msgid "Welcome, {name}."
+msgstr "Welcome, {name}."
+
+msgid "friend"
+msgstr "friend"
+
+msgid "You are already connected."
+msgstr "You are already connected."
+
+msgid "Disconnect"
+msgstr "Disconnect"
 
 #: pages/01_participant.py:561
 msgid "Your draft has been synced. Thank you for helping The Base move forward."

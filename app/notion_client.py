@@ -9,7 +9,7 @@ from functools import lru_cache
 from typing import Any, Dict, List, Optional
 
 from app.config import AppSettings, DatabaseIds
-from app.key_codec import hex_to_emoji, hex_to_phrase, split_emoji_symbols
+from app.key_codec import hex_to_emoji, hex_to_phrase, key_to_emoji_suffix, split_emoji_symbols
 
 NOTION_CLIENT_AVAILABLE = False
 try:
@@ -457,12 +457,13 @@ class EvenzRepo:
         access_key_hash = hashlib.sha256(access_key.encode("utf-8")).hexdigest()
         emoji = hex_to_emoji(access_key)
         phrase = hex_to_phrase(access_key)
+        emoji_suffix = key_to_emoji_suffix(access_key, 4)
 
         props: Dict[str, Any] = {
             self.get_title_prop(self.dbs.players): title_text(display_name or "Anonymous"),
             "access_key": rich_text(access_key),
             "access_key_hash": rich_text(access_key_hash),
-            "access_key_last4": rich_text(access_key[-4:]),
+            "access_key_last4": rich_text(emoji_suffix),
             "emoji_signature": rich_text(emoji_signature or emoji),
             "anonymous_name": rich_text(anonymous_name or "Anonymous"),
             "contact_channel": select(contact_channel),
